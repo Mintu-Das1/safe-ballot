@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block page_icon %}
+	<svg class="icon-sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="8" r="3" fill="currentColor"/><path d="M6 20c1-3 5-4 6-4s5 1 6 4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+{% endblock %}
+{% block content %}
+<h2>Create Candidate for {{ election.title }}</h2>
+<form method="post" enctype="multipart/form-data" class="mt-3">
+	{% csrf_token %}
+	<div class="mb-3">
+		<label class="form-label">Name</label>
+		{{ form.name }}
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Bio</label>
+		{{ form.bio }}
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Photo</label>
+		{{ form.photo }}
+		<div class="form-text">Optional. JPG/PNG recommended.</div>
+	</div>
+	<button type="submit" class="btn btn-primary">Create</button>
+	<a class="btn btn-link" href="{% url 'list_candidates' election.id %}">Back</a>
+</form>
+{% endblock %}
